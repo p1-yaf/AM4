@@ -3,84 +3,236 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AM4 SMP</title>
+
+    <title>AM4 SMP | أهلاً بيك</title>
+
+    <meta name="theme-color" content="#050b16">
+    <meta name="description" content="AM4 SMP - عالمك، مغامرتك، قصتك.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
 </head>
+
 <body>
-    <!-- خلفية متحركة -->
-    <div class="bg-animation">
-        <div class="orb orb1"></div>
-        <div class="orb orb2"></div>
-        <div class="orb orb3"></div>
+
+    <!-- خلفية -->
+    <div class="background">
+
+        <div class="grid"></div>
+
+        <div class="glow glow-one"></div>
+        <div class="glow glow-two"></div>
+
+        <div class="particles">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
     </div>
 
-    <div class="container">
-        <!-- بطاقة تسجيل الدخول -->
-        <div class="glass-card">
-            <!-- الشعار -->
-            <div class="logo-section">
-                <div class="logo-wrapper">
-                    <img src="https://i.imgur.com/your-server-logo.png" alt="AM4 SMP" class="server-logo">
-                    <div class="logo-glow"></div>
+
+    <!-- المحتوى -->
+    <main class="page">
+
+        <!-- الجزء الشمال -->
+        <section class="hero">
+
+            <div class="mini-badge">
+                <span class="online-dot"></span>
+                AM4 SMP
+            </div>
+
+            <h1>
+                عالمك...
+                <span>قصتك.</span>
+            </h1>
+
+            <p class="hero-description">
+                مكان تقدر فيه تلعب براحتك، تبني اللي نفسك فيه،
+                وتعيش مغامرتك مع صحابك.
+            </p>
+
+            <div class="features">
+
+                <div class="feature">
+                    <div class="feature-icon">⛏</div>
+                    <div>
+                        <strong>Survival</strong>
+                        <span>العب وابني عالمك</span>
+                    </div>
                 </div>
-                <h1 class="server-name">AM4 <span>SMP</span></h1>
-                <p class="server-tag">حيث تبدأ المغامرة</p>
+
+                <div class="feature">
+                    <div class="feature-icon">⚔</div>
+                    <div>
+                        <strong>Free World</strong>
+                        <span>اعمل اللي أنت عايزه</span>
+                    </div>
+                </div>
+
+                <div class="feature">
+                    <div class="feature-icon">👥</div>
+                    <div>
+                        <strong>Community</strong>
+                        <span>العب مع ناس تانية</span>
+                    </div>
+                </div>
+
             </div>
 
-            <!-- الفاصل -->
-            <div class="divider">
-                <span></span>
-                <span>✦</span>
-                <span></span>
-            </div>
+        </section>
 
-            <!-- زر الدخول -->
-            <div class="login-section">
-                <p class="welcome-text">انضم إلى عالمنا</p>
-                
-                <a href="#" id="discord-btn" class="discord-btn">
-                    <div class="btn-icon">
-                        <svg viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M20.317 4.3698C19.1796 3.8546 17.9566 3.4634 16.6846 3.2099C16.6446 3.2019 16.6046 3.2199 16.5846 3.2559C16.2646 3.8059 15.9046 4.5259 15.6446 5.1259C14.3546 4.8899 13.0746 4.8899 11.7946 5.1259C11.5346 4.5159 11.1646 3.8059 10.8446 3.2559C10.8246 3.2199 10.7846 3.2019 10.7446 3.2099C9.4726 3.4634 8.2496 3.8546 7.1126 4.3698C7.0946 4.3778 7.0786 4.3918 7.0686 4.4098C4.2286 8.6098 3.3886 12.7098 3.8086 16.7498C3.8126 16.7898 3.8346 16.8258 3.8686 16.8498C5.4086 17.9878 6.8966 18.7198 8.3586 19.1998C8.3986 19.2138 8.4426 19.1998 8.4686 19.1698C9.1686 18.2198 9.7986 17.2198 10.3486 16.1698C10.3766 16.1118 10.3486 16.0438 10.2886 16.0238C9.2986 15.6938 8.3486 15.2638 7.4486 14.7438C7.3826 14.7038 7.3766 14.6098 7.4366 14.5638C7.6086 14.4318 7.7806 14.2978 7.9486 14.1598C7.9946 14.1218 8.0586 14.1178 8.1086 14.1458C11.5286 15.7358 15.0786 15.7358 18.4586 14.1458C18.5086 14.1158 18.5726 14.1218 18.6206 14.1598C18.7886 14.2998 18.9606 14.4338 19.1346 14.5658C19.1946 14.6118 19.1906 14.7058 19.1246 14.7458C18.2246 15.2698 17.2726 15.6978 16.2806 16.0258C16.2206 16.0458 16.1946 16.1138 16.2226 16.1718C16.7746 17.2198 17.4066 18.2198 18.1086 19.1698C18.1346 19.1998 18.1786 19.2138 18.2186 19.1998C19.6826 18.7198 21.1726 17.9878 22.7126 16.8498C22.7466 16.8258 22.7686 16.7898 22.7726 16.7498C23.2726 12.1298 22.0686 8.0598 19.3626 4.4098C19.3526 4.3918 19.3366 4.3778 19.3186 4.3698H20.317Z"/>
-                        </svg>
-                    </div>
-                    <span>سجل دخول بـ Discord</span>
-                    <div class="btn-arrow">→</div>
-                </a>
 
-                <p class="terms">بتسجيل الدخول توافق على <a href="#">الشروط</a> و <a href="#">الخصوصية</a></p>
-            </div>
+        <!-- كارت تسجيل الدخول -->
+        <section class="login-area">
 
-            <!-- حالة المستخدم -->
-            <div id="user-info" class="user-info" style="display:none;">
-                <div class="user-card">
-                    <div class="user-avatar-wrapper">
-                        <img id="user-avatar" src="" alt="">
-                        <div class="status-dot"></div>
+            <div class="login-card">
+
+                <div class="card-shine"></div>
+
+                <div class="logo-container">
+
+                    <div class="logo-ring"></div>
+
+                    <img
+                        src="logo.png"
+                        alt="AM4 SMP"
+                        class="server-logo"
+                    >
+
+                </div>
+
+
+                <div class="title">
+
+                    <div class="small-title">
+                        WELCOME TO
                     </div>
-                    <div class="user-details">
-                        <span id="user-name" class="user-name"></span>
-                        <span class="user-badge">عضو في AM4</span>
-                    </div>
-                    <button id="logout-btn" class="logout-btn">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
-                            <polyline points="16 17 21 12 16 7"/>
-                            <line x1="21" y1="12" x2="9" y2="12"/>
-                        </svg>
-                        خروج
+
+                    <h2>
+                        AM4 <span>SMP</span>
+                    </h2>
+
+                    <p>
+                        سجل دخولك وادخل عالم AM4
+                    </p>
+
+                </div>
+
+
+                <!-- Login -->
+                <div id="login-section">
+
+                    <button id="discord-btn" class="discord-btn">
+
+                        <div class="discord-logo">
+
+                            <svg viewBox="0 0 24 24">
+                                <path fill="currentColor"
+                                    d="M19.54 5.16A16.9 16.9 0 0 0 15.5 3.9c-.17.3-.36.7-.49 1.02a15.3 15.3 0 0 0-4.02 0A10.8 10.8 0 0 0 10.5 3.9a16.9 16.9 0 0 0-4.04 1.26C3.9 8.96 3.2 12.67 3.55 16.33a16.3 16.3 0 0 0 4.96 2.5c.4-.55.76-1.13 1.07-1.74-.59-.22-1.16-.5-1.7-.82.14-.1.27-.2.4-.3 3.28 1.54 6.83 1.54 10.07 0 .13.1.26.2.4.3-.54.32-1.11.6-1.7.82.31.61.67 1.19 1.07 1.74a16.3 16.3 0 0 0 4.96-2.5c.42-4.24-.72-7.91-3.54-11.17ZM9.34 14.58c-.98 0-1.79-.9-1.79-2s.79-2 1.79-2 1.8.9 1.79 2c0 1.1-.8 2-1.79 2Zm5.32 0c-.98 0-1.79-.9-1.79-2s.79-2 1.79-2 1.8.9 1.79 2c0 1.1-.8 2-1.79 2Z"
+                                />
+                            </svg>
+
+                        </div>
+
+                        <span>تسجيل الدخول بـ Discord</span>
+
+                        <div class="arrow">
+                            ←
+                        </div>
+
                     </button>
-                </div>
-            </div>
-        </div>
 
-        <!-- تذييل -->
-        <div class="footer">
-            <span>© 2026 AM4 SMP — صنع بحب ❤️</span>
-        </div>
+
+                    <div class="secure">
+
+                        <span class="lock">🔒</span>
+
+                        <span>
+                            دخول آمن عن طريق Discord
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- User -->
+                <div id="user-info" class="user-info hidden">
+
+                    <div class="logged-title">
+                        أهلاً بيك في AM4 👋
+                    </div>
+
+                    <div class="user-card">
+
+                        <div class="avatar-box">
+
+                            <img
+                                id="user-avatar"
+                                src=""
+                                alt="User"
+                            >
+
+                            <span class="user-online"></span>
+
+                        </div>
+
+
+                        <div class="user-details">
+
+                            <strong id="user-name">
+                                Player
+                            </strong>
+
+                            <span>
+                                عضو في AM4 SMP
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <button id="logout-btn" class="logout-btn">
+                        تسجيل خروج
+                    </button>
+
+                </div>
+
+
+                <div class="terms">
+                    بدخولك للموقع أنت موافق على قوانين السيرفر.
+                </div>
+
+            </div>
+
+
+            <div class="copyright">
+                © 2026 AM4 SMP
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <div id="toast" class="toast">
+        <span id="toast-text"></span>
     </div>
+
 
     <script src="script.js"></script>
+
 </body>
 </html>
