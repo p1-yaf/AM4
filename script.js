@@ -1,96 +1,380 @@
-// 🔑 استبدل هذه القيم بقيم تطبيقك
-const CLIENT_ID = '1546040930509791282';
-const REDIRECT_URI = 'https://p1-yaf.github.io/AM4/'; // رابط موقعك بالظبط
-const DISCORD_AUTH_URL = `https://discord.com/api/oauth2/authorize?client_id=${CLIENT_ID}&redirect_uri=${encodeURIComponent(REDIRECT_URI)}&response_type=token&scope=identify%20email`;
+/* ==========================================
+   AM4 SMP - Discord Login
+========================================== */
 
-// عناصر الصفحة
-const discordBtn = document.getElementById('discord-btn');
-const userInfoDiv = document.getElementById('user-info');
-const userNameSpan = document.getElementById('user-name');
-const userAvatarImg = document.getElementById('user-avatar');
-const logoutBtn = document.getElementById('logout-btn');
 
-// 🟢 التحقق من وجود توكن في الرابط (بعد تسجيل الدخول)
-function handleRedirect() {
-    const hash = window.location.hash.substring(1);
-    if (!hash) return;
+/* Discord App */
 
-    const params = new URLSearchParams(hash);
-    const token = params.get('access_token');
+const CLIENT_ID = "1546040930509791282";
 
-    if (token) {
-        fetchUserData(token);
-        // ننظف الرابط عشان التوكن ميظهرش
-        window.history.replaceState(null, '', window.location.pathname);
-    }
+const REDIRECT_URI = "https://p1-yaf.github.io/AM4/";
+
+
+/* OAuth */
+
+const DISCORD_AUTH_URL =
+    "https://discord.com/api/oauth2/authorize" +
+    `?client_id=${CLIENT_ID}` +
+    `&redirect_uri=${encodeURIComponent(REDIRECT_URI)}` +
+    "&response_type=token" +
+    "&scope=identify%20email";
+
+
+/* Elements */
+
+const discordBtn = document.getElementById("discord-btn");
+
+const loginSection =
+    document.getElementById("login-section");
+
+const userInfo =
+    document.getElementById("user-info");
+
+const userName =
+    document.getElementById("user-name");
+
+const userAvatar =
+    document.getElementById("user-avatar");
+
+const logoutBtn =
+    document.getElementById("logout-btn");
+
+const toast =
+    document.getElementById("toast");
+
+const toastText =
+    document.getElementById("toast-text");
+
+
+/* ==========================================
+   Toast
+========================================== */
+
+function showToast(message) {
+
+    toastText.textContent = message;
+
+    toast.classList.add("show");
+
+    setTimeout(() => {
+        toast.classList.remove("show");
+    }, 3000);
 }
 
-// 🟢 جلب بيانات المستخدم من Discord
-function fetchUserData(token) {
-    fetch('https://discord.com/api/users/@me', {
-        headers: { Authorization: `Bearer ${token}` }
-    })
-    .then(res => {
-        if (!res.ok) throw new Error('فشل في جلب البيانات');
-        return res.json();
-    })
-    .then(user => {
-        // خزن البيانات عشان تفضل مسجل
-        localStorage.setItem('am4_user', JSON.stringify({
-            id: user.id,
-            username: user.username,
-            avatar: user.avatar,
-            email: user.email || 'غير متوفر'
-        }));
-        localStorage.setItem('am4_token', token);
-        showUser(user);
-    })
-    .catch(err => {
-        console.error('خطأ:', err);
-        alert('حدث خطأ أثناء تسجيل الدخول، حاول مرة أخرى.');
-    });
-}
 
-// 🟢 عرض بيانات المستخدم
-function showUser(user) {
-    const avatarUrl = user.avatar
-        ? `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png?size=128`
-        : 'https://cdn.discordapp.com/embed/avatars/0.png';
+/* ==========================================
+   Discord Login
+========================================== */
 
-    userAvatarImg.src = avatarUrl;
-    userNameSpan.textContent = `${user.username}#${user.discriminator || '0'}`;
-    
-    // إخفاء زر الدخول وإظهار معلومات المستخدم
-    document.querySelector('.login-box').style.display = 'none';
-    userInfoDiv.style.display = 'flex';
-}
+discordBtn.addEventListener("click", () => {
 
-// 🟢 التحقق من وجود جلسة نشطة
-function checkSession() {
-    const storedUser = localStorage.getItem('am4_user');
-    if (storedUser) {
-        const user = JSON.parse(storedUser);
-        showUser(user);
-    }
-}
+    discordBtn.disabled = true;
 
-// 🟢 تسجيل الخروج
-function logout() {
-    localStorage.removeItem('am4_user');
-    localStorage.removeItem('am4_token');
-    userInfoDiv.style.display = 'none';
-    document.querySelector('.login-box').style.display = 'block';
-}
+    discordBtn.style.opacity = "0.7";
 
-// 🟢 أحداث
-discordBtn.addEventListener('click', (e) => {
-    e.preventDefault();
-    // نفتح نافذة Discord في تبويب جديد
+    discordBtn.querySelector("span").textContent =
+        "جاري فتح Discord...";
+
     window.location.href = DISCORD_AUTH_URL;
 });
 
-logoutBtn.addEventListener('click', logout);
 
-// 🚀 تشغيل
-handleRedirect();
-checkSession();
+/* ==========================================
+   Get Token From URL
+========================================== */
+
+function getTokenFromURL() {
+
+    const hash =
+        window.location.hash.substring(1);
+
+    if (!hash) {
+        return null;
+    }
+
+    const params =
+        new URLSearchParams(hash);
+
+    return params.get("access_token");
+}
+
+
+/* ==========================================
+   Get Discord User
+========================================== */
+
+async function getDiscordUser(token) {
+
+    try {
+
+        const response =
+            await fetch(
+                "https://discord.com/api/users/@me",
+                {
+                    headers: {
+                        Authorization:
+                            `Bearer ${token}`
+                    }
+                }
+            );
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                "Session expired"
+            );
+
+        }
+
+
+        return await response.json();
+
+    } catch (error) {
+
+        console.error(error);
+
+        return null;
+    }
+}
+
+
+/* ==========================================
+   Avatar
+========================================== */
+
+function getAvatar(user) {
+
+    if (user.avatar) {
+
+        return `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png?size=256`;
+
+    }
+
+    return `https://cdn.discordapp.com/embed/avatars/${Number(user.discriminator || 0) % 5}.png`;
+}
+
+
+/* ==========================================
+   Show User
+========================================== */
+
+function showUser(user) {
+
+    if (!user) return;
+
+
+    userName.textContent =
+        user.global_name ||
+        user.username;
+
+
+    userAvatar.src =
+        getAvatar(user);
+
+
+    loginSection.classList.add("hidden");
+
+    userInfo.classList.remove("hidden");
+}
+
+
+/* ==========================================
+   Save Session
+========================================== */
+
+function saveSession(user, token) {
+
+    localStorage.setItem(
+        "am4_user",
+        JSON.stringify(user)
+    );
+
+    localStorage.setItem(
+        "am4_token",
+        token
+    );
+}
+
+
+/* ==========================================
+   Remove Session
+========================================== */
+
+function clearSession() {
+
+    localStorage.removeItem("am4_user");
+
+    localStorage.removeItem("am4_token");
+
+}
+
+
+/* ==========================================
+   Handle Discord Redirect
+========================================== */
+
+async function handleRedirect() {
+
+    const token =
+        getTokenFromURL();
+
+
+    if (!token) {
+        return false;
+    }
+
+
+    /* شيل التوكن من الـURL */
+
+    window.history.replaceState(
+        {},
+        document.title,
+        window.location.pathname
+    );
+
+
+    const user =
+        await getDiscordUser(token);
+
+
+    if (!user) {
+
+        clearSession();
+
+        showToast(
+            "حصلت مشكلة في تسجيل الدخول، جرب تاني."
+        );
+
+        return false;
+    }
+
+
+    saveSession(user, token);
+
+    showUser(user);
+
+    showToast(
+        `أهلاً بيك يا ${user.global_name || user.username} 👋`
+    );
+
+
+    return true;
+}
+
+
+/* ==========================================
+   Check Existing Session
+========================================== */
+
+async function checkSession() {
+
+    const savedToken =
+        localStorage.getItem("am4_token");
+
+    const savedUser =
+        localStorage.getItem("am4_user");
+
+
+    /* مفيش جلسة */
+
+    if (!savedToken || !savedUser) {
+
+        return;
+    }
+
+
+    try {
+
+        const user =
+            await getDiscordUser(savedToken);
+
+
+        /* التوكن لسه شغال */
+
+        if (user) {
+
+            saveSession(user, savedToken);
+
+            showUser(user);
+
+            return;
+        }
+
+
+    } catch (error) {
+
+        console.error(error);
+
+    }
+
+
+    /* الجلسة انتهت */
+
+    clearSession();
+
+}
+
+
+/* ==========================================
+   Logout
+========================================== */
+
+logoutBtn.addEventListener(
+    "click",
+    () => {
+
+        clearSession();
+
+
+        userInfo.classList.add("hidden");
+
+        loginSection.classList.remove("hidden");
+
+
+        discordBtn.disabled = false;
+
+        discordBtn.style.opacity = "1";
+
+        discordBtn.querySelector("span").textContent =
+            "تسجيل الدخول بـ Discord";
+
+
+        showToast(
+            "خرجت من حسابك بنجاح 👋"
+        );
+
+    }
+);
+
+
+/* ==========================================
+   Start
+========================================== */
+
+async function start() {
+
+    /*
+        الأول نشوف هل Discord رجعنا
+        من تسجيل الدخول ولا لأ
+    */
+
+    const loggedIn =
+        await handleRedirect();
+
+
+    /*
+        لو مفيش Login جديد،
+        نشوف الجلسة القديمة
+    */
+
+    if (!loggedIn) {
+
+        await checkSession();
+
+    }
+
+}
+
+
+start();
