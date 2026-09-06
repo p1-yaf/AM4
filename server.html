@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AM4 SMP | معلومات السيرفر</title>
+
+    <link rel="stylesheet" href="server.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+
+        <div class="brand">
+            <img src="logo.png" alt="AM4 Logo">
+            <span>AM4 SMP</span>
+        </div>
+
+        <!-- Burger Button -->
+        <button id="menuBtn" class="menu-btn" aria-label="فتح القائمة">
+            ☰
+        </button>
+
+    </nav>
+
+
+    <!-- Overlay -->
+    <div id="overlay" class="overlay"></div>
+
+
+    <!-- Side Menu -->
+    <aside id="sideMenu" class="side-menu">
+
+        <button id="closeMenu" class="close-menu" aria-label="إغلاق القائمة">
+            ×
+        </button>
+
+        <div class="menu-header">
+            <img src="logo.png" alt="AM4">
+            <h2>AM4 SMP</h2>
+            <p>مرحباً بيك في عالم AM4</p>
+        </div>
+
+        <div class="menu-links">
+
+            <a href="dashboard.html">
+                <span>⌂</span>
+                الرئيسية
+            </a>
+
+            <a href="server.html" class="active">
+                <span>🎮</span>
+                معلومات الدخول
+            </a>
+
+            <a href="dashboard.html#news">
+                <span>📰</span>
+                الأخبار
+            </a>
+
+            <a href="dashboard.html#account">
+                <span>👤</span>
+                حسابي
+            </a>
+
+        </div>
+
+        <div class="menu-bottom">
+            <div class="menu-status">
+                <span class="status-dot"></span>
+                AM4 SMP Online
+            </div>
+        </div>
+
+    </aside>
+
+
+    <!-- Main -->
+    <main class="container">
+
+        <!-- Header -->
+        <section class="page-header">
+
+            <div class="header-icon">
+                🎮
+            </div>
+
+            <div>
+                <span class="small-title">AM4 SMP</span>
+                <h1>معلومات الدخول</h1>
+                <p>
+                    كل بيانات السيرفر اللي محتاجها عشان تدخل وتبدأ اللعب.
+                </p>
+            </div>
+
+        </section>
+
+
+        <!-- Java Edition -->
+        <section class="server-card">
+
+            <div class="card-top">
+
+                <div class="edition-icon java">
+                    ☕
+                </div>
+
+                <div>
+                    <span class="edition-label">MINECRAFT</span>
+                    <h2>Java Edition</h2>
+                    <p>للاعبين على الكمبيوتر</p>
+                </div>
+
+            </div>
+
+
+            <div class="server-info">
+
+                <div class="info-box">
+
+                    <div class="info-title">
+                        <span>🌐</span>
+                        Server IP
+                    </div>
+
+                    <div class="copy-row">
+
+                        <span id="javaIP" class="server-value">
+                            am4.tkmc.net
+                        </span>
+
+                        <button
+                            class="copy-btn"
+                            onclick="copyText('javaIP', this)">
+                            نسخ
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Bedrock Edition -->
+        <section class="server-card">
+
+            <div class="card-top">
+
+                <div class="edition-icon bedrock">
+                    ⛏
+                </div>
+
+                <div>
+                    <span class="edition-label">MINECRAFT</span>
+                    <h2>Bedrock Edition</h2>
+                    <p>للموبايل والكونسول</p>
+                </div>
+
+            </div>
+
+
+            <div class="server-info">
+
+                <!-- IP -->
+                <div class="info-box">
+
+                    <div class="info-title">
+                        <span>🌐</span>
+                        Server IP
+                    </div>
+
+                    <div class="copy-row">
+
+                        <span id="bedrockIP" class="server-value">
+                            node-de-free-01.tickhosting.com
+                        </span>
+
+                        <button
+                            class="copy-btn"
+                            onclick="copyText('bedrockIP', this)">
+                            نسخ
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Port -->
+                <div class="info-box">
+
+                    <div class="info-title">
+                        <span>🔌</span>
+                        Port
+                    </div>
+
+                    <div class="copy-row">
+
+                        <span id="bedrockPort" class="server-value">
+                            51453
+                        </span>
+
+                        <button
+                            class="copy-btn"
+                            onclick="copyText('bedrockPort', this)">
+                            نسخ
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- How to Join -->
+        <section class="join-card">
+
+            <div class="join-icon">
+                🚀
+            </div>
+
+            <div class="join-content">
+
+                <h2>جاهز تدخل؟</h2>
+
+                <p>
+                    انسخ الـ IP المناسب لجهازك، افتح Minecraft،
+                    وأضف السيرفر وابدأ اللعب مع أصحابك.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- Back -->
+        <a href="dashboard.html" class="back-button">
+            ← الرجوع للداشبورد
+        </a>
+
+    </main>
+
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2026 AM4 SMP — All Rights Reserved</p>
+    </footer>
+
+
+    <script src="server.js?v=1"></script>
+
+</body>
+</html>
