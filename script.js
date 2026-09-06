@@ -1,6 +1,6 @@
 // 🔑 استبدل هذه القيم بقيم تطبيقك
-const CLIENT_ID = 'YOUR_CLIENT_ID_HERE';
-const REDIRECT_URI = 'https://YOUR_USERNAME.github.io'; // رابط موقعك بالظبط
+const CLIENT_ID = '1546040930509791282';
+const REDIRECT_URI = 'https://p1-yaf.github.io/AM4/'; // رابط موقعك بالظبط
 const DISCORD_AUTH_URL = `https://discord.com/api/oauth2/authorize?client_id=${CLIENT_ID}&redirect_uri=${encodeURIComponent(REDIRECT_URI)}&response_type=token&scope=identify%20email`;
 
 // عناصر الصفحة
